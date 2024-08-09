@@ -1,0 +1,24 @@
+def count_word_frequency(input_string):   
+    input_string = input_string.lower()
+    
+    
+    for char in '-.,\n':
+        input_string = input_string.replace(char, ' ')
+        
+    
+    words = input_string.split()
+    
+    word_count = {}
+    
+    for word in words:
+        if word in word_count:
+            word_count[word] += 1
+        else:
+            word_count[word] = 1
+            
+    return word_count
+input_string = input("Enter a string: ")
+word_frequency = count_word_frequency(input_string)
+print("Word Frequency:")
+for word, count in word_frequency.items():
+    print(f"{word}: {count}")
