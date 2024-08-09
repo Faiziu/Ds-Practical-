@@ -1,0 +1,74 @@
+def print_menu():
+    print("\nMenu:")
+    print("1. Add an element")
+    print("2. Remove an element")
+    print("3. Find maximum element")
+    print("4. Find minimum element")
+    print("5. Reverse the array")
+    print("6. Sort the array")
+    print("7. Display the array")
+    print("8. Exit")
+
+def add_element(arr):
+    element = input("Enter the element to add: ")
+    arr.append(element)
+    print(f"{element} added to the array.")
+
+def remove_element(arr):
+    element = input("Enter the element to remove: ")
+    if element in arr:
+        arr.remove(element)
+        print(f"{element} removed from the array.")
+    else:
+        print(f"{element} not found in the array.")
+
+def find_max(arr):
+    if arr:
+        print(f"Maximum element: {max(arr)}")
+    else:
+        print("The array is empty.")
+
+def find_min(arr):
+    if arr:
+        print(f"Minimum element: {min(arr)}")
+    else:
+        print("The array is empty.")
+
+def reverse_array(arr):
+    arr.reverse()
+    print("The array has been reversed.")
+
+def sort_array(arr):
+    arr.sort()
+    print("The array has been sorted.")
+
+def display_array(arr):
+    print("Current array:", arr)
+
+def main():
+    array = []
+    while True:
+        print_menu()
+        choice = input("Enter your choice: ")
+        if choice == '1':
+            add_element(array)
+        elif choice == '2':
+            remove_element(array)
+        elif choice == '3':
+            find_max(array)
+        elif choice == '4':
+            find_min(array)
+        elif choice == '5':
+            reverse_array(array)
+        elif choice == '6':
+            sort_array(array)
+        elif choice == '7':
+            display_array(array)
+        elif choice == '8':
+            print("Exiting the program.")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
