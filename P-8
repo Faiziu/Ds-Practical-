@@ -1,0 +1,75 @@
+class Vehicle: 
+  def __init__(self, brand, model):
+    self.brand = brand
+    self.model = model
+  def describe(self):
+    print(f"This is a {self.brand} {self.model}")
+class Car(Vehicle):
+  def __init__(self, brand, model, year):
+    super().__init__(brand, model)
+    self.year = year
+
+  def get_details(self):
+    print(f"Brand: {self.brand}\nModel: {self.model}\nYear: {self.year}")
+
+class ElectricCar(Car):  # Derived class (Hierarchical inheritance)
+  def __init__(self, brand, model, year, battery_range):
+    super().__init__(brand, model, year)
+    self.battery_range = battery_range
+
+  def get_details(self):
+    super().get_details()
+    print(f"Battery Range: {self.battery_range} km")
+
+class Truck(Vehicle):  # Derived class (Multiple inheritance)
+  def __init__(self, brand, model, payload):
+    super().__init__(brand, model)
+    self.payload = payload
+
+  def get_details(self):
+    print(f"Brand: {self.brand}\nModel: {self.model}\nPayload: {self.payload} kg")
+
+class SportsCar(Car, Truck):  # Derived class (Multiple inheritance)
+  def __init__(self, brand, model, year, payload, top_speed):
+    Car.__init__(self, brand, model, year)  # Explicitly call Car's initializer
+    Truck.__init__(self, brand, model, payload)
+    self.top_speed = top_speed
+
+  def get_details(self):
+    super().get_details()
+    print(f"Top Speed: {self.top_speed} km/h")
+
+while True:
+  vehicle_type = input("Enter vehicle type (car, electric car, truck, sports car, or exit): ")
+  if vehicle_type.lower() == 'exit':
+    break
+
+  if vehicle_type.lower() == 'car':
+    brand = input("Enter brand: ")
+    model = input("Enter model: ")
+    year = int(input("Enter year: "))
+    car = Car(brand, model, year)
+    car.get_details()
+  elif vehicle_type.lower() == 'electric car':
+    brand = input("Enter brand: ")
+    model = input("Enter model: ")
+    year = int(input("Enter year: "))
+    battery_range = int(input("Enter battery range (km): "))
+    electric_car = ElectricCar(brand, model, year, battery_range)
+    electric_car.get_details()
+  elif vehicle_type.lower() == 'truck':
+    brand = input("Enter brand: ")
+    model = input("Enter model: ")
+    payload = int(input("Enter payload (kg): "))
+    truck = Truck(brand, model, payload)
+    truck.get_details()
+  elif vehicle_type.lower() == 'sports car':
+    brand = input("Enter brand: ")
+    model = input("Enter model: ")
+    year = int(input("Enter year: "))
+    payload = int(input("Enter payload (kg): "))
+    top_speed = int(input("Enter top speed (km/h): "))
+    sports_car = SportsCar(brand, model, year, payload, top_speed)
+    sports_car.get_details()
+  else:
+    print("Invalid vehicle type.")
