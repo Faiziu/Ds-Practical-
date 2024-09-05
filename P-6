@@ -1,0 +1,37 @@
+class Complex:
+  def __init__(self, real, imaginary):
+      self.real = real
+      self.imaginary = imaginary
+
+  def add(self, other):
+      result_real = self.real + other.real
+      result_imaginary = self.imaginary + other.imaginary
+      return Complex(result_real, result_imaginary)
+
+  
+  def display(self):
+      if self.imaginary >= 0:
+          print(f"{self.real} + {self.imaginary}i")
+      else:
+          print(f"{self.real} - {-self.imaginary}i")
+
+complex1_real = float(input("Enter the real part of the first complex number: "))
+complex1_imaginary = float(input("Enter the imaginary part of the first complex number: "))
+complex1 = Complex(complex1_real, complex1_imaginary)
+
+complex2_real = float(input("Enter the real part of the second complex number: "))
+complex2_imaginary = float(input("Enter the imaginary part of the second complex number: "))
+complex2 = Complex(complex2_real, complex2_imaginary)
+
+# Display the complex numbers
+print("Complex number 1:")
+complex1.display()
+
+print("Complex number 2:")
+complex2.display()
+
+
+result = complex1.add(complex2)
+
+print("Sum of the two complex numbers:")
+result.display()
