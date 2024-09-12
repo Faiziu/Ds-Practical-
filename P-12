@@ -1,0 +1,30 @@
+class RecursiveFunctions:
+    def __init__(self):
+        pass
+
+    def factorial(self, n):
+        if n == 0:
+            return 1
+        else:
+            return n * self.factorial(n - 1)
+
+    def fibonacci(self, n):
+        if n <= 1:
+            return n
+        else:
+            return self.fibonacci(n - 1) + self.fibonacci(n - 2)
+
+
+if __name__ == "__main__":
+    functions = RecursiveFunctions()
+    choice = input("Enter 1 for Factorial, 2 for Fibonacci: ")
+    if choice == '1':
+        num = int(input("Enter a number: "))
+        print(f"Factorial of {num} is {functions.factorial(num)}")
+    elif choice == '2':
+        num = int(input("Enter a number: "))
+        print(f"Fibonacci series up to {num} is: ")
+        for i in range(num):
+            print(functions.fibonacci(i), end=" ")
+    else:
+        print("Invalid choice")
