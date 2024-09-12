@@ -1,0 +1,21 @@
+class vehicle:
+    def carbrand(self):
+        print("Different brand have different cars")
+class Ferrari(vehicle):
+    def __init__(self,name):
+        self.name=input("Enter the car name:-")
+    def carbrand(self):
+        print("This is {}".format(self.name))
+        print("{} it's a car of Ferrari".format(self.name))
+class Mercedes(vehicle):
+    def __init__(self,name):
+        self.name=input("Enter the car name:-")
+    def carbrand(self):
+        print("This is {}".format(self.name))
+        print("{} it's a car of Mercedes".format(self.name))
+
+s1 = vehicle()
+s1.carbrand()
+s2 = Ferrari("Ferrari")
+s2.carbrand()
+s3 = Mercedes("Mercedes")
