@@ -1,0 +1,45 @@
+## selection sort
+
+def selection_sort(num):
+  n = len(num)
+  for i in range(n):
+    min = i
+    for j in range(i + 1, n):
+      if num[min] > num[j]:
+        min = j
+        num[i], num[min] = num[min], num[i]
+
+# Get user input
+num = input("Enter numbers separated by spaces: ")
+num = [int(x) 
+       for x in num.split()]
+
+# Perform selection sort
+selection_sort(num)
+
+# Print the sorted list
+print("Sorted list:", num)
+
+#Insertion sort
+
+def insertionsort(mylist):
+    k = 1
+    length = len(mylist)
+    for i in range(length):
+        key = mylist[i]
+        for j in range(i, 0, -1):
+            if key < mylist[j - 1]:
+                temp = mylist[j]
+                mylist[j] = mylist[j - 1]
+                mylist[j - 1] = temp
+        print(f"Pass {k}: {mylist}")  # Use f-string for cleaner formatting
+        k += 1
+
+# Get user input for the list
+user_input = input("Enter a comma-separated list of numbers: ")
+mylist = [int(x) for x in user_input.split(",")]
+
+print("List before sorting")
+print(mylist)
+insertionsort(mylist)
+print("List after sorting")
