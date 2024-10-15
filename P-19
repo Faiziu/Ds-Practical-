@@ -1,0 +1,50 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+class BinarySearchTree:
+    def __init__(self):
+        self.root = None
+
+    def insert(self, data):
+        if self.root is None:
+            self.root = Node(data)
+        else:
+            self._insert(data, self.root)
+
+    def _insert(self, data, node):
+        if data < node.data:
+            if node.left is None:
+                node.left = Node(data)
+            else:
+                self._insert(data, node.left)
+        else:
+            if node.right is None:
+                node.right = Node(data)
+            else:
+                self._insert(data, node.right)
+
+    def inorder_traversal(self):
+        if self.root is not None:
+            self._inorder_traversal(self.root)
+
+    def _inorder_traversal(self, node):
+        if node.left is not None:
+            self._inorder_traversal(node.left)
+        print(node.data, end=" ")
+        if node.right is not None:
+            self._inorder_traversal(node.right)
+
+# Get user input for the tree
+tree = BinarySearchTree()
+while True:
+    data = input("Enter data to insert (or 'q' to quit): ")
+    if data == 'q':
+        break
+    tree.insert(int(data))
+
+# Print the inorder traversal of the tree
+print("\nInorder traversal of the tree:")
+tree.inorder_traversal()
