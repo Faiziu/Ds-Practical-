@@ -1,0 +1,135 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def insert_at_beginning(self, data):
+        new_node = Node(data)
+        new_node.next = self.head
+        self.head = new_node
+
+    def insert_at_end(self, data):
+        new_node = Node(data)
+        if self.head is None:
+            self.head = new_node
+            return
+        last = self.head
+        while last.next:
+            last = last.next
+        last.next = new_node
+
+    def insert_after(self, prev_node, data):
+        if prev_node is None:
+            print("The given previous node cannot be None")
+            return
+        new_node = Node(data)
+        new_node.next = prev_node.next
+        prev_node.next = new_node
+
+    def insert_before(self, next_node, data):
+        if next_node is None:
+            print("The given next node cannot be None")
+            return
+        if self.head == next_node:
+            self.insert_at_beginning(data)
+            return
+        new_node = Node(data)
+        current = self.head
+        while current.next != next_node:
+            current = current.next
+        new_node.next = current.next
+        current.next = new_node
+
+    def delete_at_beginning(self):
+        if self.head is None:
+            print("List is empty")
+            return
+        self.head = self.head.next
+
+    def delete_at_end(self):
+        if self.head is None:
+            print("List is empty")
+            return
+        if self.head.next is None:
+            self.head = None
+            return
+        current = self.head
+        while current.next.next:
+            current = current.next
+        current.next = None
+
+    def count_nodes(self):
+        count = 0
+        temp = self.head
+        while temp:
+            count += 1
+            temp = temp.next
+        return count
+
+    def display(self):
+        temp = self.head
+        while temp:
+            print(temp.data, end=" ")
+            temp = temp.next
+        print()
+
+if __name__ == '__main__':
+    linked_list = LinkedList()
+
+    while True:
+        print("\nChoose an operation:")
+        print("1. Insert at the beginning")
+        print("2. Insert at the end")
+        print("3. Insert after a node")
+        print("4. Insert before a node")
+        print("5. Delete from the beginning")
+        print("6. Delete from the end")
+        print("7. Count nodes")
+        print("8. Display")
+        print("9. Exit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            data = int(input("Enter data to insert: "))
+            linked_list.insert_at_beginning(data)
+        elif choice == '2':
+            data = int(input("Enter data to insert: "))
+            linked_list.insert_at_end(data)
+        elif choice == '3':
+            data = int(input("Enter data to insert: "))
+            prev_data = int(input("Enter data of the previous node: "))
+            prev_node = linked_list.head
+            while prev_node and prev_node.data != prev_data:
+                prev_node = prev_node.next
+            if prev_node:
+                linked_list.insert_after(prev_node, data)
+            else:
+                print("Previous node not found")
+        elif choice == '4':
+            data = int(input("Enter data to insert: "))
+            next_data = int(input("Enter data of the next node: "))
+            next_node = linked_list.head
+            while next_node and next_node.data != next_data:
+                next_node = next_node.next
+            if next_node:
+                linked_list.insert_before(next_node, data)
+            else:
+                print("Next node not found")
+        elif choice == '5':
+            linked_list.delete_at_beginning()
+        elif choice == '6':
+            linked_list.delete_at_end()
+        elif choice == '7':
+            count = linked_list.count_nodes()
+            print("Number of nodes in the list:", count)
+        elif choice == '8':
+            linked_list.display()
+        elif choice == '9':
+            break
+        else:
+            print("Invalid choice")
