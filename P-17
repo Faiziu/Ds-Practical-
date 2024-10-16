@@ -1,39 +1,49 @@
 ## selection sort
 
-def selection_sort(num):
-  n = len(num)
-  for i in range(n):
-    min = i
-    for j in range(i + 1, n):
-      if num[min] > num[j]:
-        min = j
-        num[i], num[min] = num[min], num[i]
+class SelectionSort:
+    def __init__(self, num_list):
+        self.num_list = num_list
+
+    def sort(self):
+        n = len(self.num_list)
+        for i in range(n):
+            min_idx = i
+            for j in range(i + 1, n):
+                if self.num_list[min_idx] > self.num_list[j]:
+                    min_idx = j
+            self.num_list[i], self.num_list[min_idx] = self.num_list[min_idx], self.num_list[i]
 
 # Get user input
-num = input("Enter numbers separated by spaces: ")
-num = [int(x) 
-       for x in num.split()]
+numbers_str = input("Enter numbers separated by spaces: ")
+numbers = [int(x) for x in numbers_str.split()]
+
+# Create an instance of SelectionSort
+sorter = SelectionSort(numbers)
 
 # Perform selection sort
-selection_sort(num)
+sorter.sort()
 
 # Print the sorted list
-print("Sorted list:", num)
+print("Sorted list:", sorted.num_list)
 
 #Insertion sort
 
-def insertionsort(mylist):
-    k = 1
-    length = len(mylist)
-    for i in range(length):
-        key = mylist[i]
-        for j in range(i, 0, -1):
-            if key < mylist[j - 1]:
-                temp = mylist[j]
-                mylist[j] = mylist[j - 1]
-                mylist[j - 1] = temp
-        print(f"Pass {k}: {mylist}")  # Use f-string for cleaner formatting
-        k += 1
+class InsertionSort:
+    def __init__(self, mylist):
+        self.mylist = mylist
+
+    def sort(self):
+        k = 1
+        length = len(self.mylist)
+        for i in range(length):
+            key = self.mylist[i]
+            for j in range(i, 0, -1):
+                if key < self.mylist[j - 1]:
+                    temp = self.mylist[j]
+                    self.mylist[j] = self.mylist[j - 1]
+                    self.mylist[j - 1] = temp
+            print(f"Pass {k}: {self.mylist}")
+            k += 1
 
 # Get user input for the list
 user_input = input("Enter a comma-separated list of numbers: ")
@@ -41,5 +51,12 @@ mylist = [int(x) for x in user_input.split(",")]
 
 print("List before sorting")
 print(mylist)
-insertionsort(mylist)
+
+# Create an instance of the InsertionSort class
+sorter = InsertionSort(mylist)
+
+# Call the sort method on the instance
+sorter.sort()
+
 print("List after sorting")
+print(sorter.mylist)
