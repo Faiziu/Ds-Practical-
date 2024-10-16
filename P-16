@@ -1,17 +1,28 @@
-def bubble_sort(list_):
-    n = len(list_)
-    for i in range(n-1):
-        for j in range(n-i-1):
-            if list_[j] > list_[j+1]:
-                list_[j], list_[j+1] = list_[j+1], list_[j]
-    return list_
+class Sorter:
+    def __init__(self):
+        self.numbers = []
+
+    def bubble_sort(self):
+        n = len(self.numbers)
+        for i in range(n-1):
+            for j in range(n-i-1):
+                if self.numbers[j] > self.numbers[j+1]:
+                    self.numbers[j], self.numbers[j+1] = self.numbers[j+1], self.numbers[j]
+
+    def get_sorted_list(self):
+        return self.numbers
 
 # Get input from user
 numbers = input("Enter a list of numbers separated by spaces: ")
 numbers = [int(x) for x in numbers.split()]
 
-# Sort the list using bubble sort
-sorted_numbers = bubble_sort(numbers)
+# Create an instance of the Sorter class
+sorter = Sorter()
+
+# Set the numbers to be sorted
+sorter.numbers = numbers
+
+# Perform bubble sort
+sorter.bubble_sort()
 
 # Print the sorted list
-print("Sorted list:", sorted_numbers)
