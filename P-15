@@ -1,33 +1,43 @@
-def linear_search(list_of_elements, element):
-  for index, value in enumerate(list_of_elements):
-    if value == element:
-      return index
-  return -1
-def binary_search(list_of_elements, element):
-  left = 0
-  right = len(list_of_elements) - 1
-  while left <= right:
-    mid = (left + right) // 2
-    if list_of_elements[mid] == element:
-      return mid
-    elif list_of_elements[mid] < element:
-      left = mid + 1
-    else:
-      right = mid - 1
-  return -1
+class SearchAlgorithms:
+    def __init__(self, list_of_elements):
+        self.list_of_elements = list_of_elements
+
+    def linear_search(self, element):
+        for index, value in enumerate(self.list_of_elements):
+            if value == element:
+                return index
+        return -1
+
+    def binary_search(self, element):
+        left = 0
+        right = len(self.list_of_elements) - 1
+        while left <= right:
+            mid = (left + right) // 2
+            if self.list_of_elements[mid] == element:
+                return mid
+            elif self.list_of_elements[mid] < element:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return -1
+
+
 if __name__ == "__main__":
-  list_of_elements = list(
-      map(int, input("Enter the elements of the list (separated by spaces): ").split())
-  )
-  element = int(input("Enter the element to search for: "))
-  linear_index = linear_search(list_of_elements, element)
-  if linear_index != -1:
-    print(f"Element found at index {linear_index} using linear search.")
-  else:
-    print("Element not found using linear search.")
-  list_of_elements.sort()
-  binary_index = binary_search(list_of_elements, element)
-  if binary_index != -1:
-    print(f"Element found at index {binary_index} using binary search.")
-  else:
-    print("Element not found using binary search.")
+    list_of_elements = list(int, input("Enter the elements of the list (separated by spaces): ").split())
+    )
+    element = int(input("Enter the element to search for: "))
+
+    searcher = SearchAlgorithms(list_of_elements)
+
+    linear_index = searcher.linear_search(element)
+    if linear_index != -1:
+        print(f"Element found at index {linear_index} using linear search.")
+    else:
+        print("Element not found using linear search.")
+
+    searcher.list_of_elements.sort() 
+    binary_index = searcher.binary_search(element)
+    if binary_index != -1:
+        print(f"Element found at index {binary_index} using binary search.")
+    else:
+        print("Element not found using binary search.")
